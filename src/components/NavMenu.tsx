@@ -90,13 +90,13 @@ export function DropDownNavbar() {
           <NavigationMenuContent>
             <ul className = "grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {components.map((component) => (
-                <ListIem
+                <ListItem
                   key={component.title}
                   title={component.title}
                   href={component.href}
                 >
                   {component.description}
-                </ListIem>
+                </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
