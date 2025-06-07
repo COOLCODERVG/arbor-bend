@@ -124,3 +124,133 @@ const SignupForm = () => {
               </div>
 
               <Label className="text-lg mt-2">Email<span className="text-red-400">*</span></Label>
+              <input
+                type="email"
+                className="border-[0.5px] rounded-lg px-4 py-2 mb-4"
+                placeholder="example@gmail.com"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+
+              <Label className="text-lg mb-1">Password<span className="text-red-400">*</span></Label>
+              <input
+                type="password"
+                className="border-[0.5px] rounded-lg px-4 py-2 mb-4"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+
+              <Button
+                type="button"
+                className="bg-green-500 px-8 py-2 text-white w-full hover:bg-green-400 transition-all"
+                onClick={() => setStep(2)}
+              >
+                Next
+              </Button>
+            </>
+          )}
+
+          {/* Step 2: Additional Info */}
+          {step === 2 && (
+            <>
+              <Label className="text-lg mb-1">Phone Number<span className="text-red-400">*</span></Label>
+              <PhoneInput
+                placeholder="Enter phone number"
+                className="border-[0.5px] rounded-lg px-4 py-2 mb-4"
+                value={phoneNumber}
+                onChange={setPhoneNumber}/>
+
+              <Label className="text-lg mb-1">Community<span className="text-red-400">*</span></Label>
+              <select
+                className="border-[0.5px] rounded-lg px-4 py-2 mb-4"
+                onChange={(e) => setCommunity(e.target.value)}
+                required
+              >
+                <option value="" disabled selected>
+                  Select your community
+                </option>
+                {communities.map((comm):any => (
+          <option key={comm.id} value={comm.id}>
+            {comm.name}
+        </option>
+      ))}
+              </select>
+
+              <Label className="text-lg mb-1">Profile Image URL<span className="text-red-400">*</span></Label>
+              <input
+                type="url"
+                className="border-[0.5px] rounded-lg px-4 py-2 mb-4"
+                placeholder="https://example.com/profile.jpg"
+                onChange={(e) => setProfileImage(e.target.value)}
+              />
+
+              <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                <div>
+                  <Label className="text-lg mb-1">Latitude<span className="text-red-400">*</span></Label>
+                  <input
+                    type="number"
+                    className="border-[0.5px] rounded-lg px-4 py-2"
+                    placeholder="e.g. 37.7749"
+                    disabled={true}
+                    value={coords ? coords.latitude.toString() : ""}
+
+                  />
+                </div>
+                <div>
+                  <Label className="text-lg mb-1">Longitude<span className="text-red-400">*</span></Label>
+                  <input
+                    type="number"
+                    className="border-[0.5px] rounded-lg px-4 py-2"
+                    placeholder="e.g. -122.4194"
+                    disabled={true}
+                    value={coords ? coords.longitude.toString() : ""}
+
+
+                  />
+                </div>
+              </div>
+
+              <Label className="text-lg mt-2 mb-1">LinkedIn (Optional)<span className="text-red-400">*</span></Label>
+              <input
+                type="url"
+                className="border-[0.5px] rounded-lg px-4 py-2 mb-4"
+                placeholder="https://linkedin.com/in/username"
+                onChange={(e) => setLinkedin(e.target.value)}
+              />
+
+              <Button
+                type="submit"
+                className={`bg-green-500 px-8 py-2 text-white w-full hover:bg-green-400 transition-all ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Submit"}
+              </Button>
+            </>
+          )}
+          
+          <p className=" mx-auto w-fit mt-4 text-[1.5ch]">
+              Forgot your password? <a href="/password-reset/" className="text-green-500">Reset it!</a>
+            </p>
+            <h2 className="text-center text-black text-[1.5ch] ">
+            Have an account?{" "}
+            <a href="/" className="text-green-400">
+              Login
+            </a>
+            
+          </h2>
+          
+        </form>
+      </div>
+      <img
+        className="hidden md:block md:w-[60%] object-cover object-right"
+        src={picture}
+        alt="Background"
+      />
+    </div>
+  );
+};
+
+export default SignupForm;
